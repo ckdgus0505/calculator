@@ -15,6 +15,7 @@ namespace Win_Calc
         Double value = 0;
         String operation = "";
         bool operation_pressed = false;
+        bool equation_pressed = false;
         public Form1()
         {
             InitializeComponent();
@@ -25,6 +26,14 @@ namespace Win_Calc
         {
             if ((result.Text == "0") || (operation_pressed))
                 result.Clear();
+            if (equation_pressed == true)
+            {
+                if (operation_pressed == false)
+                {
+                    result.Text = "";
+                    equation_pressed = false;
+                }
+            }
             operation_pressed = false;
             Button b = (Button)sender;
             result.Text = result.Text + b.Text;
@@ -64,6 +73,7 @@ namespace Win_Calc
                     break;
             }
             operation_pressed = false;
+            equation_pressed = true;
         }
 
         private void button18_Click(object sender, EventArgs e)
